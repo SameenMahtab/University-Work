@@ -1,0 +1,121 @@
+package ca.mcgill.ecse223.resto.view;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+
+import ca.mcgill.ecse223.resto.controller.InvalidInputException;
+import ca.mcgill.ecse223.resto.controller.RestoAppController;
+import ca.mcgill.ecse223.resto.model.RestoApp;
+
+public class CreateTablePage extends JFrame {
+
+	private static final long serialVersionUID = -6671167773705738484L;
+
+	private RestoApp resto;
+
+	private JButton addTableButton;
+	private JLabel errorLabel, tableSizeLabel, tableLocLabel, numSeatsLabel;
+	private JTextField widthField, heightField, locXField, locYField, numSeatsField;
+
+	private String errorMessage = "";
+
+	public CreateTablePage(RestoApp r) {
+		this.resto = r;
+
+		initComponents();
+	}
+
+	private void initComponents() {
+		// elements
+		addTableButton = new JButton();
+		errorLabel = new JLabel();
+		tableSizeLabel = new JLabel();
+		tableLocLabel = new JLabel();
+		numSeatsLabel = new JLabel();
+		widthField = new JTextField();
+		heightField = new JTextField();
+		locXField = new JTextField();
+		locYField = new JTextField();
+		numSeatsField = new JTextField();
+
+		// global settings and listeners
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setTitle("Add Table");
+
+		// Set text
+		addTableButton.setText("Add table");
+		tableSizeLabel.setText("Table size (width, height):");
+		tableLocLabel.setText("Table location (x, y)");
+		numSeatsLabel.setText("Number of seats:");
+		clearFields();
+
+		// layout
+		GroupLayout layout = new GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
+
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup().addComponent(errorLabel).addComponent(tableSizeLabel)
+						.addComponent(tableLocLabel).addComponent(numSeatsLabel))
+				.addGroup(layout.createParallelGroup().addComponent(widthField).addComponent(locXField)
+						.addComponent(numSeatsField).addComponent(addTableButton))
+				.addGroup(layout.createParallelGroup().addComponent(heightField).addComponent(locYField)));
+
+		layout.setVerticalGroup(layout.createSequentialGroup().addComponent(errorLabel)
+				.addGroup(layout.createParallelGroup().addComponent(tableSizeLabel).addComponent(widthField)
+						.addComponent(heightField))
+				.addGroup(layout.createParallelGroup().addComponent(tableLocLabel).addComponent(locXField)
+						.addComponent(locYField))
+				.addGroup(layout.createParallelGroup().addComponent(numSeatsLabel).addComponent(numSeatsField))
+				.addGroup(layout.createParallelGroup().addComponent(addTableButton)));
+
+		addTableButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addTableButtonActionPerformed();
+			}
+		});
+
+		pack();
+	}
+
+	private void refreshData() {
+		clearFields();
+		pack();
+	}
+
+	private void clearFields() {
+		widthField.setText("");
+		heightField.setText("");
+		locXField.setText("");
+		locYField.setText("");
+		numSeatsField.setText("");
+		errorLabel.setText(errorMessage);
+	}
+
+	private void addTableButtonActionPerformed() {
+		// create and call the controller
+		RestoAppController rac = new RestoAppController(resto);
+		// TODO: Change table number for uniqueness
+		int tableNumber = rac.getRestoInstance().numberOfTables() + 1;
+		int width = Integer.parseInt(widthField.getText());
+		int height = Integer.parseInt(heightField.getText());
+		int locX = Integer.parseInt(locXField.getText());
+		int locY = Integer.parseInt(locYField.getText());
+		int numSeats = Integer.parseInt(numSeatsField.getText());
+		try {
+			rac.createTable(tableNumber, locX, locY, width, height, numSeats);
+			errorMessage = "";
+		} catch (InvalidInputException e) {
+			errorMessage = "Invalid input !";
+			e.printStackTrace();
+		}
+		refreshData();
+	}
+
+}

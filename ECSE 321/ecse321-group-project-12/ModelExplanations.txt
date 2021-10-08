@@ -1,0 +1,22 @@
+There is a top level class called "CoopSystem" with one String id as primary key and contains the other classes (CoopUser,EventNotification, Docuemtn,Message, CoopJob).
+CoopSystem will effectively be a singleton. In the serice class, we make sure in creating a new isntance or getting one that
+we have only one instance with primary key "Main data"
+
+CoopUser is an abstract class with the username as primary key. It has 2 child classes (Student and Employer).
+CoopUser has a bidrectional relationship with Documents the user authored, 2 biderctional relationships with Message (sent and received)
+
+Student has a uniderectional relationship to Document (to store the personal documents like CV and Transcript)
+It also has 2 booleans indicating whether the student accepts his documents to be availabele on the system to to the employers who hired him.
+
+Employer has a unidirectional relationship to Student indicating the students who interned with this employer.
+Employer has also a unidrectional relationship to EventNotification (any EventNotification instance created will be made availabe to all employers)
+
+CoopJob is an association class between Employer and Student. It allows each Employer/Student to have any number of internships with any Student/Employer.
+CooJob has a unidrectional relationship to Document, storing the documents which are required for the coop.
+CoopJob has an enum tye specifying whta is the state of the coop (started,finished, interrupted....)
+
+The Document class has an enum type specifying what sort of document this is.
+
+Message has a unidrectional relationship to Document (any message can have attachements, which will remain in the system even if the message is deleted later).
+
+Message, CoopJob, EventNotification, Document also have a primary key.

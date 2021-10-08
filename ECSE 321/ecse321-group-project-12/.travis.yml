@@ -1,0 +1,21 @@
+matrix:
+  include:
+    - language: java
+      script:
+        - "./gradlew build"
+
+    - stage: deploy to backend app
+      script: skip
+      deploy:
+        provider: heroku
+        api_key:
+            secure: gGem2Kh71i2+YXssweHRCiCBL8euTXt0braOnSuPlJdKp+SZ3jQaHekWZawIGyreuS9AI6eCcEiPZrfqBOQuiDGR6VcywmkHt11Z7xZLRQW4vxge77cJex2RuDcmg9cQD3xH4/727JWj7hUbjLkIqNb/WYplzeNuhmegDjFMp8aTlbMHyQ6Z4w+ACawf5QBVgYqNEZWSiks0m+dj8RycV1Z+PnkSFmnRbawxGDF81dGbLibcmLyultioeZeEyqkzJxzysUfu2Lz+Cj8sPzaYCa1DMywdv7iTGPWrW7XMtaiUQp7nFQtM7MQ5E23YtwP0RAu3PDTwgn4RrUyR+yJJrDpDnAoP9oeANzVG/6cKTEvWXtSGGd2hr4Vp41WHPvswF1jvVNFd9Eu2oiOLOkvjwJ3nY8Y7ZUIMM2yNh1PsnDyumStUX/K3MW71Ff0DjpEXs0SZKzl2LFf9VbWcSMG/ld23rgInlcP7vRsGbO9f9AFndb8n+BXmKAmWFZuyLNW3o0OVMSG14pXR8HeJPeaLZbdBeyBjFNwtr+K4zwsMlR9/WX3jg2dQ4eJq/By7IhuH4Y9y/B7KpzslkaqOOe8ajkhDi796j92qqEbmKnEROfXWOC26a3GS1/CluzvYoeRzfjup640RWNyusk64muROwyzhiHm45BffPUH4J2xRonQ=
+        app: ecse321-group12
+
+    - stage: deploy to frontend app
+      script: skip
+      deploy:
+        provider: heroku
+        api_key:
+            secure: gGem2Kh71i2+YXssweHRCiCBL8euTXt0braOnSuPlJdKp+SZ3jQaHekWZawIGyreuS9AI6eCcEiPZrfqBOQuiDGR6VcywmkHt11Z7xZLRQW4vxge77cJex2RuDcmg9cQD3xH4/727JWj7hUbjLkIqNb/WYplzeNuhmegDjFMp8aTlbMHyQ6Z4w+ACawf5QBVgYqNEZWSiks0m+dj8RycV1Z+PnkSFmnRbawxGDF81dGbLibcmLyultioeZeEyqkzJxzysUfu2Lz+Cj8sPzaYCa1DMywdv7iTGPWrW7XMtaiUQp7nFQtM7MQ5E23YtwP0RAu3PDTwgn4RrUyR+yJJrDpDnAoP9oeANzVG/6cKTEvWXtSGGd2hr4Vp41WHPvswF1jvVNFd9Eu2oiOLOkvjwJ3nY8Y7ZUIMM2yNh1PsnDyumStUX/K3MW71Ff0DjpEXs0SZKzl2LFf9VbWcSMG/ld23rgInlcP7vRsGbO9f9AFndb8n+BXmKAmWFZuyLNW3o0OVMSG14pXR8HeJPeaLZbdBeyBjFNwtr+K4zwsMlR9/WX3jg2dQ4eJq/By7IhuH4Y9y/B7KpzslkaqOOe8ajkhDi796j92qqEbmKnEROfXWOC26a3GS1/CluzvYoeRzfjup640RWNyusk64muROwyzhiHm45BffPUH4J2xRonQ=
+        app: front12-321

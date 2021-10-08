@@ -1,0 +1,19 @@
+class OrderItem {
+	status {
+		Unordered {
+			entry/ {setDiscount(0.0);}
+			setOrderedEnough() [getQuantity() >= 5] -> OrderedEnoughForDiscount;
+			setOrderedNotEnough() [getQuantity() > 0 && getQuantity() < 5] -> OrderedNotEnoughForDiscount;
+		}
+		OrderedNotEnoughForDiscount {
+			entry/ {setDiscount(1.0);}
+			setOrderedEnough() [getQuantity() >= 5] -> OrderedEnoughForDiscount;
+			setUnordered() [getQuantity() == 0] -> Unordered;
+		}
+		OrderedEnoughForDiscount {
+			entry/ {setDiscount(0.8);}
+			setOrderedNotEnough() [getQuantity() > 0 && getQuantity() < 5] -> OrderedNotEnoughForDiscount;
+			setUnordered() [getQuantity() == 0] -> Unordered;
+		}
+	}
+}

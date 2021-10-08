@@ -1,0 +1,65 @@
+<pages>
+    <link>
+        <title>Employer Search</title>
+        <url>employersearch.php</url>
+    </link>
+    <link>
+        <title>Job Management</title>
+        <url>jobmanagement.php</url>
+    </link>
+    <link>
+        <title>Send Message</title>
+        <url>
+            sendmessage.php
+        </url>
+    </link>
+    <link>
+        <title>Sent Messages</title>
+        <url>
+            sentmessages.php
+        </url>
+    </link>
+    <link>
+        <title>Student Management</title>
+        <url>
+            studentmanagement.php
+        </url>
+    </link>
+    <link>
+        <title>Student Records</title>
+        <url>
+            studentsearch.php
+        </url>
+    </link>
+    <link>
+        <title>Your Jobs</title>
+        <url>
+            yourjobs.php
+        </url>
+    </link>
+    <link>
+        <title>Job Management</title>
+        <url>
+            jobmanagement.php
+        </url>
+    </link>
+    <link>
+        <title>Tax Forms</title>
+        <url>
+            taxForms.php
+        </url>
+    </link>
+    <link>
+        <title>Home</title>
+        <url>
+            index.php
+        </url>
+    </link>
+    <link>
+        <title>Inbox</title>
+        <url>
+            inbox.php
+        </url>
+    </link>
+</pages>
+
